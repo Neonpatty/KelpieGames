@@ -6,4 +6,4 @@ Kelpie Games is:
 Emerson Philips,
 James Webster,
 Tristan Levanic,
-Patrick Astermann,
+Patrick Astermann
