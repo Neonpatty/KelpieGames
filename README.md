@@ -7,3 +7,5 @@ Emerson Philips,
 James Webster,
 Tristan Levanic,
 Patrick Astermann
+
+Open World Exploration Game
