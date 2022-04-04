@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class FishMovement : MonoBehaviour
 {
-    [SerializeField] float swimSpeed;
-    [SerializeField] LayerMask colMask;
+    [SerializeField] float _swimSpeed;
+    public Bait FoundBait;
     void Update()
     {
-        var movePos = transform.forward * swimSpeed * Time.deltaTime;
+        var movePos = transform.forward * _swimSpeed * Time.deltaTime;
         var moveRot = transform.rotation;
         transform.position += movePos;
+
+        if (!FoundBait) return;
+
+        if (FoundBait.transform.position.magnitude - transform.position.magnitude < 0.5f)
+            transform.position -= movePos;
+        else
+        {
+            if (!FoundBait.Fishes.Contains(this))
+            {
+                FoundBait.Fishes.Add(this);
+            }
+        }
     }
 
     float FindRandDirection()
@@ -28,8 +40,12 @@ public class FishMovement : MonoBehaviour
             Debug.Log("Hit Boundary");
             transform.forward = -transform.forward;
         }
-            
-        
+        else if (col.CompareTag("Bait"))
+        {
+            FoundBait = col.GetComponent<Bait>();
+            transform.LookAt(FoundBait.transform.position);
+
+        }
     }
 
 
