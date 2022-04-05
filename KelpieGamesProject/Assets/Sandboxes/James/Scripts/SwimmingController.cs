@@ -8,7 +8,7 @@ namespace JamesNamespace
     {
         [SerializeField] float _maxSwimSpeed, swimSpeed;
         [SerializeField] Rigidbody _rb;
-
+        
         void FixedUpdate()
         {
             VerticalSwim();
@@ -48,6 +48,7 @@ namespace JamesNamespace
                 _rb.ClampRBSpeed(_maxSwimSpeed);
             }
         }
+        
     }
 }
 

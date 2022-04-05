@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour
+namespace JamesNamespace
 {
-    public Bait BaitItem;
-
-    private Items HeldItem = null;
-
-    void Awake()
+    public class ItemHandler : MonoBehaviour
     {
-        HeldItem = BaitItem;
-    }
+        public Bait BaitItem;
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        private Items HeldItem = null;
+
+        void Awake()
         {
-            Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
+            HeldItem = BaitItem;
+        }
+
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
+            }
         }
     }
 }
+

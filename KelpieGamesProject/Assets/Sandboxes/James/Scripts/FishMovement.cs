@@ -2,51 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishMovement : MonoBehaviour
+namespace JamesNamespace
 {
-    [SerializeField] float _swimSpeed;
-    public Bait FoundBait;
-    void Update()
+    public class FishMovement : MonoBehaviour
     {
-        var movePos = transform.forward * _swimSpeed * Time.deltaTime;
-        var moveRot = transform.rotation;
-        transform.position += movePos;
-
-        if (!FoundBait) return;
-
-        if (FoundBait.transform.position.magnitude - transform.position.magnitude < 0.5f)
-            transform.position -= movePos;
-        else
+        [SerializeField] float _swimSpeed;
+        [SerializeField] Rigidbody _rb;
+        public Bait FoundBait;
+        void FixedUpdate()
         {
-            if (!FoundBait.Fishes.Contains(this))
+            
+            var movePos = transform.forward * _swimSpeed * Time.deltaTime;
+            var moveRot = transform.rotation;
+            transform.position += movePos;
+            
+
+            //_rb.AddRelativeForce(transform.forward * _swimSpeed * Time.deltaTime);
+
+            /*
+            if (!FoundBait) return;
+
+            if (FoundBait.transform.position.magnitude - transform.position.magnitude < 0.5f)
+                transform.position -= movePos;
+            else
             {
-                FoundBait.Fishes.Add(this);
+                if (!FoundBait.Fishes.Contains(this))
+                {
+                    FoundBait.Fishes.Add(this);
+                }
+            }
+            */
+        }
+
+        float FindRandDirection()
+        {
+            var rand = Random.Range(-36f, 36f);
+            var sine = Mathf.Sin(rand);
+            Debug.Log(sine);
+            return sine;
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            if (col.CompareTag("Boundary"))
+            {
+                Debug.Log("Hit Boundary");
+                transform.forward = -transform.forward;
+            }
+            else if (col.CompareTag("Bait"))
+            {
+                FoundBait = col.GetComponent<Bait>();
+                transform.LookAt(FoundBait.transform.position);
+
             }
         }
+
+
     }
-
-    float FindRandDirection()
-    {
-        var rand = Random.Range(-36f, 36f);
-        var sine = Mathf.Sin(rand);
-        Debug.Log(sine);
-        return sine;
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.CompareTag("Boundary"))
-        {
-            Debug.Log("Hit Boundary");
-            transform.forward = -transform.forward;
-        }
-        else if (col.CompareTag("Bait"))
-        {
-            FoundBait = col.GetComponent<Bait>();
-            transform.LookAt(FoundBait.transform.position);
-
-        }
-    }
-
 
 }

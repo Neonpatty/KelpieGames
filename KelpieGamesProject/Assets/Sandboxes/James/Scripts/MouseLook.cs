@@ -16,10 +16,26 @@ namespace JamesNamespace
         private float _vertAngularVelocity;
         private float _horiAngularVelocity;
 
-        void Start()
+
+        void Awake()
         {
+            
             Cursor.lockState = CursorLockMode.Locked;
+
             _horiHelper.localRotation = transform.localRotation;
+
+            StartCoroutine(PostSimulationUpdate());
+        }
+
+        IEnumerator PostSimulationUpdate()
+        {
+            YieldInstruction waitForFixedUpdate = new WaitForFixedUpdate();
+            while (true)
+            {
+                yield return waitForFixedUpdate;
+
+                Rotate();
+            }
         }
 
         void Rotate()
@@ -35,9 +51,9 @@ namespace JamesNamespace
 
         }
 
-        void Update()
+        void LateUpdate()
         {
-            Rotate();
+            //Rotate();
         }
 
         protected float GetVerticalValue() => Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
@@ -52,8 +68,6 @@ namespace JamesNamespace
         {
             DampHoriztonal();
             _player.Rotate(Vector3.up, GetHorizontalValue());
-
-            
         }
     
 

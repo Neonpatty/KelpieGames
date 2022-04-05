@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bait : Items
+namespace JamesNamespace
 {
-    public float Durability;
-
-    public List<FishMovement> Fishes = new List<FishMovement>();
-
-    void Update()
+    public class Bait : Items
     {
-        Durability -= Fishes.Count * Time.deltaTime;
+        public float Durability;
 
-        if (Durability <= 0)
+        public List<FishMovement> Fishes = new List<FishMovement>();
+
+        void Update()
         {
-            Durability = 0;
+            Durability -= Fishes.Count * Time.deltaTime;
 
-            foreach (FishMovement fish in Fishes)
+            if (Durability <= 0)
             {
-                fish.FoundBait = null;
+                Durability = 0;
+
+                foreach (FishMovement fish in Fishes)
+                {
+                    fish.FoundBait = null;
+                }
+                Fishes.Clear();
+                Destroy(gameObject);
             }
-            Fishes.Clear();
-            Destroy(gameObject);
         }
     }
+
 }

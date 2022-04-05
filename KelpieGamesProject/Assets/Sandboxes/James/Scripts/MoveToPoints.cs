@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToPoints : MonoBehaviour
+namespace JamesNamespace
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoveToPoints : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
