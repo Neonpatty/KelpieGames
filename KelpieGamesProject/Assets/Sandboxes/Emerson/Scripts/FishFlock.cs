@@ -25,7 +25,7 @@ public class FishFlock : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.tankSizeX)
             turning = true;
@@ -42,7 +42,7 @@ public class FishFlock : MonoBehaviour
         }
         else
         {
-            if (Random.Range(0, 5) < 1) //20% chance of running logic per frame, use this to ensure optimisation + more natural behaviour
+            if (Random.Range(0, 10) < 1) //10% chance of running logic per frame (will run every 10 frames * 0.02s (fixed update) = 0.2s per update), use this to ensure optimisation + more natural behaviour
                 ApplyRules();
         }
         transform.Translate(0, 0, Time.deltaTime * speed);
@@ -64,21 +64,26 @@ public class FishFlock : MonoBehaviour
         int groupSize = 0;
         foreach (GameObject go in gos)
         {
-            if (go != this.gameObject)
+            if (go != null)
             {
-                dist = Vector3.Distance(go.transform.position, this.transform.position);
-                if(dist <= neighbourDistance)
-                {
-                    vcentre += go.transform.position;
-                    groupSize++;
 
-                    if(dist < 1.0f) //Change this to change how close fish can be before avoidance
+
+                if (go != this.gameObject)
+                {
+                    dist = Vector3.Distance(go.transform.position, this.transform.position);
+                    if (dist <= neighbourDistance)
                     {
-                        vavoid = vavoid + (this.transform.position - go.transform.position);
-                        //We are about to collide with another fish, calculate vector to avoid this fish        
+                        vcentre += go.transform.position;
+                        groupSize++;
+
+                        if (dist < 1.0f) //Change this to change how close fish can be before avoidance
+                        {
+                            vavoid = vavoid + (this.transform.position - go.transform.position);
+                            //We are about to collide with another fish, calculate vector to avoid this fish        
+                        }
+                        FishFlock anotherFlock = go.GetComponent<FishFlock>();
+                        gSpeed = Mathf.Clamp(gSpeed + anotherFlock.speed, 0.25f, 4); //when in a flock, speed up. Clamp this more to reduce max speed
                     }
-                    FishFlock anotherFlock = go.GetComponent<FishFlock>();
-                    gSpeed = Mathf.Clamp(gSpeed + anotherFlock.speed, 0.25f, 4); //when in a flock, speed up. Clamp this more to reduce max speed
                 }
             }
         }
