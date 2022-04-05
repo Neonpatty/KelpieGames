@@ -7,19 +7,29 @@ namespace JamesNamespace
     public class ItemHandler : MonoBehaviour
     {
         public Bait BaitItem;
+        public ScreenshotHandler ScreenshotHandler;
 
         private Items HeldItem = null;
 
         void Awake()
         {
-            HeldItem = BaitItem;
+            HeldItem = ScreenshotHandler;
         }
 
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
+                if (HeldItem == BaitItem)
+                {
+                    Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
+                }
+                else if (HeldItem == ScreenshotHandler)
+                {
+                    ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
+                    
+                }
+                
             }
         }
     }
