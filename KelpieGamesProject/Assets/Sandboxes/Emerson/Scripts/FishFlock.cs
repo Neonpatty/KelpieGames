@@ -27,7 +27,7 @@ public class FishFlock : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.tankSize)
+        if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.tankSizeX)
             turning = true;
         else
             turning = false;
