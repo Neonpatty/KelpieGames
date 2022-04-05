@@ -18982,6 +18982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaitItem: {fileID: 1654508211497148546, guid: 6e8349163bc56064b821d6638a973718, type: 3}
+  ScreenshotHandler: {fileID: 0}
 --- !u!114 &1129640139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19982,8 +19983,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e582e42ac7c2d468969f6419448596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 6003253626783285189, guid: 80fbdf764a07d3a4891cc3ad92baf052, type: 3}
-  goalPrefab: {fileID: 949986390}
+  fishPrefab: {fileID: 2080180286227831063, guid: 80fbdf764a07d3a4891cc3ad92baf052, type: 3}
+  goalPrefab: {fileID: 949986393}
+  tankSizeX: 125
+  tankSizeY: 40
+  tankSizeZ: 125
+  numFish: 300
 --- !u!4 &1189594390
 Transform:
   m_ObjectHideFlags: 0

@@ -41,8 +41,10 @@ public class GlobalFlock : MonoBehaviour
 
     Vector3 RandomPosInCube(int width, int height, int length)
     {
+        var offset = transform.position;
         return new Vector3(Random.Range(-width, width),
-                Random.Range(height, height),
-                Random.Range(length, length));
+                Random.Range(-height, height),
+                Random.Range(-length, length)) + 
+                offset;
     }
 }
