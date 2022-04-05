@@ -11,8 +11,6 @@ public class FishFlock : MonoBehaviour
     [Tooltip("How fast the fish rotate")]
     float rotationSpeed = 4.0f; //turning speed
 
-   
-
     [Tooltip("Fish closer than this distance will flock together, otherwise they will go off by themselves")]
     public float neighbourDistance = 1;
 
@@ -27,7 +25,7 @@ public class FishFlock : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.tankSizeX)
+        if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
             turning = true;
         else
             turning = false;
@@ -50,47 +48,45 @@ public class FishFlock : MonoBehaviour
 
     void ApplyRules()
     {
-        GameObject[] gos;
-        gos = GlobalFlock.allFish;
+        FishFlock[] fishes;
+        fishes = GlobalFlock.Instance.allFish;
 
         Vector3 vcentre = Vector3.zero; //center of group
         Vector3 vavoid = Vector3.zero; //points away from fish neighbours
         float gSpeed = 0.1f;
 
-        Vector3 goalPos = GlobalFlock.goalPos;
+        Vector3 goalPos = GlobalFlock.Instance.goalPos;
 
         float dist;
 
         int groupSize = 0;
-        foreach (GameObject go in gos)
+        foreach (FishFlock fish in fishes)
         {
-            if (go != null)
+            if (fish == null) continue;
+
+            if (fish == this) continue;
+
+            dist = Vector3.Distance(fish.transform.position, this.transform.position);
+            if (dist <= neighbourDistance)
             {
+                vcentre += fish.transform.position;
+                groupSize++;
 
-
-                if (go != this.gameObject)
+                if (dist < 1.0f) //Change this to change how close fish can be before avoidance
                 {
-                    dist = Vector3.Distance(go.transform.position, this.transform.position);
-                    if (dist <= neighbourDistance)
-                    {
-                        vcentre += go.transform.position;
-                        groupSize++;
-
-                        if (dist < 1.0f) //Change this to change how close fish can be before avoidance
-                        {
-                            vavoid = vavoid + (this.transform.position - go.transform.position);
-                            //We are about to collide with another fish, calculate vector to avoid this fish        
-                        }
-                        FishFlock anotherFlock = go.GetComponent<FishFlock>();
-                        gSpeed = Mathf.Clamp(gSpeed + anotherFlock.speed, 0.25f, 4); //when in a flock, speed up. Clamp this more to reduce max speed
-                    }
+                    vavoid = vavoid + (transform.position - fish.transform.position);
+                    //We are about to collide with another fish, calculate vector to avoid this fish        
                 }
+                FishFlock anotherFlock = fish.GetComponent<FishFlock>();
+                gSpeed = Mathf.Clamp(gSpeed + anotherFlock.speed, 0.25f, 4); //when in a flock, speed up. Clamp this more to reduce max speed
             }
+                
+            
         }
 
         if (groupSize > 0)
         {
-            vcentre = vcentre / groupSize + (goalPos - this.transform.position);
+            vcentre = vcentre / groupSize + (goalPos - transform.position);
             speed = Mathf.Clamp(gSpeed / groupSize, 1, 10); //speed will change based on how many people there are in the group
 
             Vector3 direction = (vcentre + vavoid) - transform.position; //get direction to swim in (center + avoid - position)

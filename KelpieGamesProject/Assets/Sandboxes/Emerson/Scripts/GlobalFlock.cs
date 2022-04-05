@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class GlobalFlock : MonoBehaviour
 {
-    public GameObject fishPrefab;
-    public GameObject goalPrefab; //where the fish are trying to go to
-    public static int tankSizeX = 125; //Size of the play area (meters)
-    public static int tankSizeY = 40; //Size of the play area (meters)
-    public static int tankSizeZ = 125; //Size of the play area (meters)
-    public static int numFish = 300; //Numb of Fish to spawn
-    public static GameObject[] allFish = new GameObject[numFish];
+    public static GlobalFlock Instance;
 
-    public static Vector3 goalPos = Vector3.zero;
+    void Awake() => Instance = this;
+
+    public FishFlock fishPrefab;
+    public Transform goalPrefab; //where the fish are trying to go to
+    public int tankSizeX = 125; //Size of the play area (meters)
+    [SerializeField] int tankSizeY = 40; //Size of the play area (meters)
+    [SerializeField] int tankSizeZ = 125; //Size of the play area (meters)
+    [SerializeField] int numFish = 300; //Numb of Fish to spawn
+    public FishFlock[] allFish { get; private set; }
+    public Vector3 goalPos { get; private set; } = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        allFish = new FishFlock[numFish];
         for(int i=0; i< numFish; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-tankSizeX, tankSizeX),
-                Random.Range(-tankSizeY, tankSizeY),
-                Random.Range(-tankSizeZ, tankSizeZ));
-            allFish[i] = (GameObject)Instantiate(fishPrefab, pos, Quaternion.identity);
+            Vector3 pos = RandomPosInCube(tankSizeX, tankSizeY, tankSizeZ);
+            allFish[i] = Instantiate(fishPrefab, pos, Quaternion.identity);
             
         }
     }
@@ -33,10 +34,15 @@ public class GlobalFlock : MonoBehaviour
     {
         if(Random.Range(0,100000) < 50) //this changes the target position of the fish, changes every so oftem
         {
-            goalPos = new Vector3(Random.Range(-tankSizeX, tankSizeX),
-                Random.Range(-tankSizeY, tankSizeY),
-                Random.Range(-tankSizeZ, tankSizeZ)); //set new goal position for fish to wander to
-            goalPrefab.transform.position = goalPos; //sets location of pink sphere
+            goalPos = RandomPosInCube(tankSizeX, tankSizeY, tankSizeZ); //set new goal position for fish to wander to
+            goalPrefab.position = goalPos; //sets location of pink sphere
         }
+    }
+
+    Vector3 RandomPosInCube(int width, int height, int length)
+    {
+        return new Vector3(Random.Range(-width, width),
+                Random.Range(height, height),
+                Random.Range(length, length));
     }
 }
