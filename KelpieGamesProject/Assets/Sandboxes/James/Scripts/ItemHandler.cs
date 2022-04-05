@@ -17,7 +17,7 @@ public class ItemHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(HeldItem, transform.position, Quaternion.identity);
+            Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
         }
     }
 }

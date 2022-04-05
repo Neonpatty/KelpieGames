@@ -11,14 +11,14 @@ namespace JamesNamespace
 
         void FixedUpdate()
         {
-            SwimVertical();
+            VerticalSwim();
             DirectionalSwim();
             SlowingMovement();
         }
 
         void SlowingMovement()
         {
-
+            _rb.velocity = _rb.velocity * 0.95f;
         }
 
 
@@ -33,7 +33,7 @@ namespace JamesNamespace
             _rb.ClampRBSpeed(_maxSwimSpeed);
         }
 
-        void SwimVertical()
+        void VerticalSwim()
         {
             if (Input.GetKey(KeyCode.Space))
             {
