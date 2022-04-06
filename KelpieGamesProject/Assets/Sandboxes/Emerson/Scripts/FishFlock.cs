@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FishState
+{
+    Swimming = 0, 
+    Eating = 1,
+}
+
 public class FishFlock : MonoBehaviour
 {
     public float speedMax;
     public float speedMin;
     public float speed;
+    private FishState _state;
+    public Bait FoundBait = null;
 
     [Tooltip("How fast the fish rotate")]
     float rotationSpeed = 4.0f; //turning speed
@@ -25,11 +33,55 @@ public class FishFlock : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Random.Range(0,20) < 1) 
+        switch (_state)
+        {
+            case FishState.Swimming:
+                AimlessSwimming();
+                break;
+            case FishState.Eating:
+                MovingToEat();
+                break;
+
+        }
+    }
+
+    public void ChangeFishState(FishState newState)
+    {
+        _state = newState;
+    }
+
+    void MovingToEat()
+    {
+        if (!FoundBait)
+        {
+            ChangeFishState(FishState.Swimming);
+            return;
+        }
+        var baitPos = FoundBait.transform.position;
+        var direction = baitPos - transform.position;
+        transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction),
+                rotationSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(baitPos, transform.position) < 0.5f)
+        {
+            if (!FoundBait.Fishes.Contains(this)) FoundBait.Fishes.Add(this);
+        }
+        else
+        {
+            transform.Translate(0, 0, Time.deltaTime * speed);
+        }
+    }
+
+    void AimlessSwimming()
+    {
+        if (Random.Range(0, 20) < 1)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Enviroment")))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Environment")))
+            {
                 turning = true;
+            }
             else
                 turning = false;
             /*
@@ -39,10 +91,11 @@ public class FishFlock : MonoBehaviour
                 turning = false;
             */
         }
-        
+
         if (turning) //"Turning" ensures that fish don't go outside the play area (defined in GlobalFlock.cs). If you want fish to swim forever, disable this.
         {
-            Vector3 direction = new Vector3(0, 30, 0) - transform.position;
+            var originPos = GlobalFlock.Instance.transform.position;
+            Vector3 direction = new Vector3(Random.Range(-50, 50), originPos.y, Random.Range(-50, 50)) - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
                 rotationSpeed * Time.deltaTime);

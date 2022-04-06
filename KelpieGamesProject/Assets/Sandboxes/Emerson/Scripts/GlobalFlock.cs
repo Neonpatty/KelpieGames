@@ -47,4 +47,8 @@ public class GlobalFlock : MonoBehaviour
                 Random.Range(-length, length)) + 
                 offset;
     }
+    public Vector3 RandomPosInCube_Public()
+    {
+        return RandomPosInCube(tankSizeX, tankSizeY, tankSizeZ);
+    }
 }

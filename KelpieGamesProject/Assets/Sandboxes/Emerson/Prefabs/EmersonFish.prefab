@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6288416371844939839}
   - component: {fileID: 2080180286227831063}
+  - component: {fileID: 502745839063993179}
   m_Layer: 0
   m_Name: EmersonFish
   m_TagString: Untagged
@@ -47,7 +48,21 @@ MonoBehaviour:
   speedMax: 5
   speedMin: 3
   speed: 4
-  neighbourDistance: 3
+  FoundBait: {fileID: 0}
+  neighbourDistance: 1
+--- !u!65 &502745839063993179
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003253626783285189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15, y: 0.4, z: 0.9}
+  m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!1001 &1979205905773314586
 PrefabInstance:
   m_ObjectHideFlags: 0
