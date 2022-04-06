@@ -14,8 +14,16 @@ public class GlobalFlock : MonoBehaviour
     [SerializeField] int tankSizeY = 40; //Size of the play area (meters)
     [SerializeField] int tankSizeZ = 50; //Size of the play area (meters)
     [SerializeField] int numFish = 300; //Numb of Fish to spawn
+    [SerializeField] int distToCullFish = 50; //how far away should we stop rendering fish?
+    [SerializeField] float timeToCullFish = 5f; //how often should we reactivate fish?
+
     public FishFlock[] allFish { get; private set; }
+    public FishFlock[] activeFish { get; private set; }
+
     public Vector3 goalPos { get; private set; } = Vector3.zero;
+
+    JamesNamespace.SwimmingController playerRef;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +35,27 @@ public class GlobalFlock : MonoBehaviour
             allFish[i] = Instantiate(fishPrefab, pos, Quaternion.identity);
             
         }
+        playerRef = FindObjectOfType<JamesNamespace.SwimmingController>();
+
+        StartCoroutine(OptimiseFishies());
+
+    }
+
+    IEnumerator OptimiseFishies()
+    {
+        foreach(FishFlock i in allFish)
+        {
+            if(Vector3.Distance(playerRef.transform.position, i.transform.position) > distToCullFish)
+            {
+                i.gameObject.SetActive(false);
+            }
+            else
+            {
+                i.gameObject.SetActive(true);
+            }
+        }
+        yield return new WaitForSeconds(timeToCullFish);
+        StartCoroutine(OptimiseFishies());
     }
 
     // Update is called once per frame
