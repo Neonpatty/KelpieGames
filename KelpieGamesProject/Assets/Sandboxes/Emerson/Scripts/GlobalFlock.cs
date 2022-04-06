@@ -10,9 +10,9 @@ public class GlobalFlock : MonoBehaviour
 
     public FishFlock fishPrefab;
     public Transform goalPrefab; //where the fish are trying to go to
-    public int tankSizeX = 125; //Size of the play area (meters)
+    public int tankSizeX = 50; //Size of the play area (meters)
     [SerializeField] int tankSizeY = 40; //Size of the play area (meters)
-    [SerializeField] int tankSizeZ = 125; //Size of the play area (meters)
+    [SerializeField] int tankSizeZ = 50; //Size of the play area (meters)
     [SerializeField] int numFish = 300; //Numb of Fish to spawn
     public FishFlock[] allFish { get; private set; }
     public Vector3 goalPos { get; private set; } = Vector3.zero;

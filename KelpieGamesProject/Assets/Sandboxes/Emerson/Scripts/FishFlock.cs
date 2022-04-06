@@ -25,14 +25,24 @@ public class FishFlock : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
-            turning = true;
-        else
-            turning = false;
-
+        if(Random.Range(0,20) < 1) 
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Enviroment")))
+                turning = true;
+            else
+                turning = false;
+            /*
+            if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
+                turning = true;
+            else
+                turning = false;
+            */
+        }
+        
         if (turning) //"Turning" ensures that fish don't go outside the play area (defined in GlobalFlock.cs). If you want fish to swim forever, disable this.
         {
-            Vector3 direction = Vector3.zero - transform.position;
+            Vector3 direction = new Vector3(0, 30, 0) - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
                 rotationSpeed * Time.deltaTime);
