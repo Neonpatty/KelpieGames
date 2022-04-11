@@ -23,10 +23,12 @@ public class FishFlock : MonoBehaviour
     public float neighbourDistance = 1;
 
     bool turning = false; //turn around when at the edge of play area.
+    Vector3 turnDir;
 
     // Start is called before the first frame update
     void Start()
     {
+        turnDir = GlobalFlock.Instance.transform.position;
         speed = Random.Range(speedMin, speedMax);
     }
 
@@ -41,7 +43,6 @@ public class FishFlock : MonoBehaviour
             case FishState.Eating:
                 MovingToEat();
                 break;
-
         }
     }
 
@@ -81,24 +82,25 @@ public class FishFlock : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Environment")))
             {
                 turning = true;
+
+                var newHitPos = new Vector3(hit.point.x, hit.point.y + (Random.Range(-10, 10)) / 20, hit.point.z);
+
+                turnDir = (newHitPos - transform.position) * -1;
+            }
+            else if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
+            {
+                turning = true;
+                var originPos = GlobalFlock.Instance.transform.position;
+                turnDir = originPos - transform.position;
             }
             else
                 turning = false;
-            /*
-            if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
-                turning = true;
-            else
-                turning = false;
-            */
+            
         }
 
         if (turning) //"Turning" ensures that fish don't go outside the play area (defined in GlobalFlock.cs). If you want fish to swim forever, disable this.
         {
-            var originPos = GlobalFlock.Instance.transform.position;
-            Vector3 direction = new Vector3(Random.Range(-50, 50), originPos.y, Random.Range(-50, 50)) - transform.position;
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(direction),
-                rotationSpeed * Time.deltaTime);
+            transform.rotation = TurnInDirection(turnDir);
             speed = Random.Range(speedMin, speedMax);
         }
         else
@@ -107,6 +109,15 @@ public class FishFlock : MonoBehaviour
                 ApplyRules();
         }
         transform.Translate(0, 0, Time.deltaTime * speed);
+    }
+
+    Quaternion TurnInDirection(Vector3 direction)
+    {
+        
+        
+        return Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction),
+                rotationSpeed * Time.deltaTime);
     }
 
     void ApplyRules()

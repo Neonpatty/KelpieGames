@@ -7558,8 +7558,8 @@ MonoBehaviour:
   tankSizeX: 125
   tankSizeY: 4
   tankSizeZ: 125
-  numFish: 400
-  distToCullFish: 60
+  numFish: 350
+  distToCullFish: 80
   timeToCullFish: 5
 --- !u!4 &437105132
 Transform:
@@ -10358,7 +10358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &641174533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23334,7 +23334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1353639853
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35071,7 +35071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2039609219
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36571,7 +36571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2122493167
 MeshCollider:
   m_ObjectHideFlags: 0
