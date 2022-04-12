@@ -6,6 +6,7 @@ public enum FishState
 {
     Swimming = 0, 
     Eating = 1,
+    Caught = 2,
 }
 
 public class FishFlock : MonoBehaviour
@@ -42,6 +43,8 @@ public class FishFlock : MonoBehaviour
                 break;
             case FishState.Eating:
                 MovingToEat();
+                break;
+            case FishState.Caught:
                 break;
         }
     }
