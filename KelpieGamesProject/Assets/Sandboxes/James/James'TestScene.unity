@@ -36970,6 +36970,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5996579139484237266, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: NetItem
+      value: 
+      objectReference: {fileID: -3675889162040241907, guid: 069537ead0e180d4787af6e73557e260, type: 3}
     - target: {fileID: 5996579139484237267, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: _takenImage
       value: 

@@ -9,7 +9,7 @@ namespace JamesNamespace
     {
         public Bait BaitItem;
         public ScreenshotHandler ScreenshotHandler;
-        public Net net;
+        public Net NetItem;
 
         private Dictionary<int, Items> _items;
         private Items HeldItem = null;
@@ -21,7 +21,7 @@ namespace JamesNamespace
             _items = new Dictionary<int, Items>();
             _items.Add(0, BaitItem);
             _items.Add(1, ScreenshotHandler);
-            _items.Add(2, net);
+            _items.Add(2, NetItem);
         }
 
         void Update()
@@ -30,14 +30,7 @@ namespace JamesNamespace
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (HeldItem == BaitItem)
-                {
-                    Instantiate(HeldItem, transform.position + transform.forward * 2, Quaternion.identity);
-                }
-                else if (HeldItem == ScreenshotHandler)
-                {
-                    ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
-                }
+                HeldItem.UseAbility(Camera.main.transform);
             }
         }
 

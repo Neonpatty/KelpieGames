@@ -8,6 +8,11 @@ public class Bait : Items
 
     public List<FishFlock> Fishes = new List<FishFlock>();
 
+    public override void UseAbility(Transform player)
+    {
+        Instantiate(this, player.position + player.forward * 2, Quaternion.identity);
+    }
+
     void Update()
     {
         if (Fishes.Count <= 0) return;

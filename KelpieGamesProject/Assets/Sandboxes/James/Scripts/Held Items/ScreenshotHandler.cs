@@ -7,6 +7,11 @@ public class ScreenshotHandler : Items
 {
     [SerializeField] RawImage _takenImage;
 
+    public override void UseAbility(Transform player)
+    {
+        TakeScreenshot_Static(Screen.width, Screen.height);
+    }
+
     public void TakeScreenshot_Static(int width, int height)
     {
         RenderTexture capturedImage = new RenderTexture(width, height, 16);
