@@ -9,6 +9,7 @@ namespace JamesNamespace
     {
         public Bait BaitItem;
         public ScreenshotHandler ScreenshotHandler;
+        public Net net;
 
         private Dictionary<int, Items> _items;
         private Items HeldItem = null;
@@ -20,6 +21,7 @@ namespace JamesNamespace
             _items = new Dictionary<int, Items>();
             _items.Add(0, BaitItem);
             _items.Add(1, ScreenshotHandler);
+            _items.Add(2, net);
         }
 
         void Update()
