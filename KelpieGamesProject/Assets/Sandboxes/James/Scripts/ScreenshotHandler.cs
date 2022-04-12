@@ -11,8 +11,10 @@ public class ScreenshotHandler : Items
     {
         RenderTexture capturedImage = new RenderTexture(width, height, 16);
         ScreenCapture.CaptureScreenshotIntoRenderTexture(capturedImage);
-
-        _takenImage.texture = capturedImage;
+        if (_takenImage != null)
+            _takenImage.texture = capturedImage;
+        else
+            Debug.LogError("_takenImage not valid");
 
     }
 
