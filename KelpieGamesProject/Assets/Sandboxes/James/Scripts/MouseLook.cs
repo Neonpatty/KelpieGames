@@ -10,6 +10,7 @@ namespace JamesNamespace
         [SerializeField] Transform _player;
         [SerializeField] Transform _horiHelper;
         float _xRotation = 0f;
+        float _yRotation = 0f;
 
         [SerializeField] private float _smoothTime;
         private float _verOld;
@@ -21,10 +22,10 @@ namespace JamesNamespace
         {
             
             Cursor.lockState = CursorLockMode.Locked;
-
+            Application.targetFrameRate = 500;
             _horiHelper.localRotation = transform.localRotation;
 
-            StartCoroutine(PostSimulationUpdate());
+            //StartCoroutine(PostSimulationUpdate());
         }
 
         IEnumerator PostSimulationUpdate()
@@ -45,6 +46,11 @@ namespace JamesNamespace
                   _xRotation >= 90 ? 90 :
                   _xRotation;
 
+            _yRotation -= GetHorizontalValue();
+            _yRotation = _yRotation <= -180 ? -180 :
+                  _yRotation >= 180 ? 180 :
+                  _yRotation;
+
             _verOld = _xRotation;
             RotateVertical();
             RotateHorizontal();
@@ -53,23 +59,25 @@ namespace JamesNamespace
 
         void LateUpdate()
         {
-            //Rotate();
+           Rotate();
         }
 
         protected float GetVerticalValue() => Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
         protected float GetHorizontalValue() => Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
         protected virtual void RotateVertical()
         {
-            DampVertical();
+           // DampVertical();
             transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
         }
 
         protected virtual void RotateHorizontal() 
         {
-            DampHoriztonal();
-            _player.Rotate(Vector3.up, GetHorizontalValue());
+
+            //DampHoriztonal();
+            //transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+            // _player.Rotate(Vector3.up, GetHorizontalValue());
         }
-    
+
 
         void DampHoriztonal()
         {

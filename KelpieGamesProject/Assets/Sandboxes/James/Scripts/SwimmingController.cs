@@ -8,6 +8,7 @@ namespace JamesNamespace
     {
         [SerializeField] float _maxSwimSpeed, swimSpeed;
         [SerializeField] Rigidbody _rb;
+        [SerializeField] Transform cameraGameObject;
         
         void FixedUpdate()
         {
@@ -15,6 +16,11 @@ namespace JamesNamespace
             DirectionalSwim();
             SlowingMovement();
         }
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
 
         void SlowingMovement()
         {
@@ -27,8 +33,8 @@ namespace JamesNamespace
             var inputX = Input.GetAxisRaw("Horizontal");
             var inputY = Input.GetAxisRaw("Vertical");
 
-            _rb.AddForce(transform.right * inputX * swimSpeed * 50 * Time.deltaTime);
-            _rb.AddForce(transform.forward * inputY * swimSpeed * 50 * Time.deltaTime);
+            _rb.AddForce(cameraGameObject.right * inputX * swimSpeed * 50 * Time.deltaTime);
+            _rb.AddForce(cameraGameObject.forward * inputY * swimSpeed * 50 * Time.deltaTime);
 
             _rb.ClampRBSpeed(_maxSwimSpeed);
         }
