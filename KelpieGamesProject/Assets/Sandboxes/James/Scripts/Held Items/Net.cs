@@ -44,7 +44,7 @@ public class Net : Items
             fish.transform.position = _caughtPoint.transform.position;
             fish.transform.rotation = _caughtPoint.transform.rotation;
             _allFish.Add(fish);
-            
+            fish.canMove = false;
         }
         else if (other.gameObject.layer == LayerMask.GetMask("Environment"))
         {

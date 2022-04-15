@@ -17,6 +17,7 @@ public class FishFlock : MonoBehaviour
     private FishState _state;
     public Bait FoundBait = null;
 
+    public bool canMove; //override fish movement
     [Tooltip("How fast the fish rotate")]
     float rotationSpeed = 4.0f; //turning speed
 
@@ -35,7 +36,7 @@ public class FishFlock : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate() //changing this to late update will ensure smoother movement, but also can lead to more CPU usage (as it is occouring at the frame rate, rather than 50x a second. Consider changing this back to fixed update if things dont work out
+    void FixedUpdate() //Logic runs in fixed update, movement runs in late update = silky smooth at low CPU cost
     {
         switch (_state)
         {
@@ -48,6 +49,11 @@ public class FishFlock : MonoBehaviour
             case FishState.Caught:
                 break;
         }
+    }
+    private void LateUpdate()
+    {
+        if(canMove)
+            transform.Translate(0, 0, Time.deltaTime * speed);
     }
 
     public void ChangeFishState(FishState newState)
@@ -71,15 +77,19 @@ public class FishFlock : MonoBehaviour
         if (Vector3.Distance(baitPos, transform.position) < 0.5f)
         {
             if (!FoundBait.Fishes.Contains(this)) FoundBait.Fishes.Add(this);
+            canMove = false;
         }
         else
         {
-            transform.Translate(0, 0, Time.deltaTime * speed);
+            canMove = true;
+            //transform.Translate(0, 0, Time.deltaTime * speed);
         }
     }
 
     void AimlessSwimming()
     {
+        canMove = true;
+
         if (Random.Range(0, 20) < 1)
         {
             RaycastHit hit;
@@ -112,7 +122,7 @@ public class FishFlock : MonoBehaviour
             if (Random.Range(0, 10) < 1) //10% chance of running logic per frame (will run every 10 frames * 0.02s (fixed update) = 0.2s per update), use this to ensure optimisation + more natural behaviour
                 ApplyRules();
         }
-        transform.Translate(0, 0, Time.deltaTime * speed);
+       // transform.Translate(0, 0, Time.deltaTime * speed);
     }
 
     Quaternion TurnInDirection(Vector3 direction)

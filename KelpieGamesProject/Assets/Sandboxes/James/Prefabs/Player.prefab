@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5f717e4d999fa74abae2ac8e8da2fbd, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5996579139484237277}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,6 +428,7 @@ MonoBehaviour:
   _maxSwimSpeed: 4
   swimSpeed: 20
   _rb: {fileID: 5996579139484237277}
+  cameraGameObject: {fileID: 5996579139119026127}
 --- !u!114 &5996579139484237267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaitItem: {fileID: 1654508211497148546, guid: 6e8349163bc56064b821d6638a973718, type: 3}
   ScreenshotHandler: {fileID: 5996579139484237267}
+  NetItem: {fileID: -3675889162040241907, guid: 069537ead0e180d4787af6e73557e260, type: 3}
 --- !u!54 &5996579139484237277
 Rigidbody:
   m_ObjectHideFlags: 0
