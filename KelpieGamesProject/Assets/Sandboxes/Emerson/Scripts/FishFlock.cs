@@ -31,10 +31,11 @@ public class FishFlock : MonoBehaviour
     {
         turnDir = GlobalFlock.Instance.transform.position;
         speed = Random.Range(speedMin, speedMax);
+        Application.targetFrameRate = 300;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate() //changing this to late update will ensure smoother movement, but also can lead to more CPU usage (as it is occouring at the frame rate, rather than 50x a second. Consider changing this back to fixed update if things dont work out
     {
         switch (_state)
         {
