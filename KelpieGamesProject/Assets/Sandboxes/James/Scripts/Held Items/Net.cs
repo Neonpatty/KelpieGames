@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Net : Items
 {
@@ -10,10 +11,10 @@ public class Net : Items
     [SerializeField] float _upTime;
     List<FishFlock> _allFish = new List<FishFlock>();
 
-    public override void UseAbility(Transform cam)
+    public override void UseAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
     {
-        var me = Instantiate(this, cam.position + cam.forward * 2, cam.rotation);
-        me.GetComponent<Rigidbody>().AddForce(cam.forward * _shootForce, ForceMode.Force);
+        var me = Instantiate(this, cam.transform.position + cam.transform.forward * 2, cam.transform.rotation);
+        me.GetComponent<Rigidbody>().AddForce(cam.transform.forward * _shootForce, ForceMode.Force);
     }
 
     void Update()

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Items : MonoBehaviour
+public abstract class Items : MonoBehaviour
 {
-    public virtual void UseAbility(Transform player)
+    public virtual void UseAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
     {
 
     }
+
+    
 }

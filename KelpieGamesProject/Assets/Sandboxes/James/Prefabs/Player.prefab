@@ -441,7 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9144e16c622adea4e8bb37c03c035afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _takenImage: {fileID: 0}
 --- !u!114 &5996579139484237266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,9 +453,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5bfe5c9456ba3640b8b0cd1d170d7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaitItem: {fileID: 1654508211497148546, guid: 6e8349163bc56064b821d6638a973718, type: 3}
-  ScreenshotHandler: {fileID: 5996579139484237267}
-  NetItem: {fileID: -3675889162040241907, guid: 069537ead0e180d4787af6e73557e260, type: 3}
+  _cameraImage: {fileID: 0}
+  AllItemsList:
+  - {fileID: 11400000, guid: 4b8d31c37d4364846887ceb65721e46f, type: 2}
+  - {fileID: 11400000, guid: 08528c9c6870e484db51fdde60484794, type: 2}
+  - {fileID: 11400000, guid: 2db78803db6826247846948d39b31ef9, type: 2}
+  SlotEquipped: {fileID: 0}
+  SlotLower: {fileID: 0}
+  SlotUpper: {fileID: 0}
 --- !u!54 &5996579139484237277
 Rigidbody:
   m_ObjectHideFlags: 0

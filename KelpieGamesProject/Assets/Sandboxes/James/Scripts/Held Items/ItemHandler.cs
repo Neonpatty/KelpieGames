@@ -1,27 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace JamesNamespace
 {
     public class ItemHandler : MonoBehaviour
     {
-        public Bait BaitItem;
-        public ScreenshotHandler ScreenshotHandler;
-        public Net NetItem;
+        public static ItemHandler Instance { get; private set; }
 
-        private Dictionary<int, Items> _items;
-        private Items HeldItem = null;
+        [SerializeField] RawImage _cameraImage;
+        public GameObject _cameraFrame, itemWheel, _captureImage;
+
+        public List<ScriptableItem> AllItemsList;
+        private Dictionary<int, ScriptableItem> _items;
+
+        private ScriptableItem HeldItem = null;
+        public Image SlotEquipped, SlotLower, SlotUpper;
+        public bool isAimingCamera { get; private set; }
 
         void Awake()
         {
-            HeldItem = ScreenshotHandler;
+            Instance = this;
 
-            _items = new Dictionary<int, Items>();
-            _items.Add(0, BaitItem);
-            _items.Add(1, ScreenshotHandler);
-            _items.Add(2, NetItem);
+            _items = new Dictionary<int, ScriptableItem>();
+
+            for (int i = 0; i < AllItemsList.Count; i++)
+            {
+                _items.Add(i, AllItemsList[i]);
+            }
+            HeldItem = _items[0];
+            UpdateIcons();
+            _cameraImage.enabled = false;
         }
 
         void Update()
@@ -30,8 +41,42 @@ namespace JamesNamespace
 
             if (Input.GetMouseButtonDown(0))
             {
-                HeldItem.UseAbility(Camera.main.transform);
+                HeldItem.Script.UseAbility(Camera.main, _cameraImage, this);
             }
+
+            if (Input.GetMouseButton(1) && IsPlayerHoldingCamera())
+            {
+                isAimingCamera = true;
+            }
+            else
+            {
+                isAimingCamera = false;
+            }
+            ChangeCameraState(isAimingCamera);
+        }
+
+        void ChangeCameraState(bool isAimingCamera)
+        {
+            switch (isAimingCamera)
+            {
+                case true:
+                    Camera.main.fieldOfView = 25;
+                    _cameraFrame.SetActive(true);
+                    itemWheel.SetActive(false);
+                    _captureImage.SetActive(false);
+                    break;
+                case false:
+                    Camera.main.fieldOfView = 60;
+                    _cameraFrame.SetActive(false);
+                    itemWheel.SetActive(true);
+                    _captureImage.SetActive(true);
+                    break;
+            }
+        }
+
+        bool IsPlayerHoldingCamera()
+        {
+            return HeldItem.Name == "Camera" ? true : false;
         }
 
         void ChangeHeldEquipment()
@@ -43,7 +88,8 @@ namespace JamesNamespace
                 if (itemIndex >= _items.Count - 1) EquipItem(0);
                 else EquipItem(itemIndex + 1);
 
-                Debug.Log("Equipped Item: " + HeldItem);
+                UpdateIcons();
+                Debug.Log("Equipped Item: " + HeldItem.Name);
             }
             else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.Q))
             {
@@ -52,7 +98,8 @@ namespace JamesNamespace
                 if (itemIndex <= 0) EquipItem(_items.Count - 1);
                 else EquipItem(itemIndex - 1);
 
-                Debug.Log("Equipped Item: " + HeldItem);
+                UpdateIcons();
+                Debug.Log("Equipped Item: " + HeldItem.Name);
             }
         }
 
@@ -61,7 +108,7 @@ namespace JamesNamespace
             HeldItem = _items[index];
         }
 
-        int GetCurrentItemIndex(Items heldItem)
+        int GetCurrentItemIndex(ScriptableItem heldItem)
         {
             foreach(var item in _items)
             {
@@ -70,6 +117,22 @@ namespace JamesNamespace
 
             Debug.LogWarning("No Item on Hand!");
             return 0;
+        }
+
+        void UpdateIcons()
+        {
+            SlotEquipped.sprite = HeldItem.Icon;
+
+            var itemIndex = GetCurrentItemIndex(HeldItem);
+
+            // IF THIS IS THE HIGHEST ITEM INDEX
+            if (itemIndex >= _items.Count - 1) SlotUpper.sprite = _items[0].Icon;
+            else SlotUpper.sprite = _items[itemIndex + 1].Icon;
+
+            // IF THIS IS THE LOWEST ITEM INDEX
+            if (itemIndex <= 0) SlotLower.sprite = _items[_items.Count - 1].Icon;
+            else SlotLower.sprite = _items[itemIndex - 1].Icon;
+
         }
     }
 }

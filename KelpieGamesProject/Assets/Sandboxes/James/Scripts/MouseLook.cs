@@ -74,8 +74,8 @@ namespace JamesNamespace
         {
 
             //DampHoriztonal();
-            //transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
-            // _player.Rotate(Vector3.up, GetHorizontalValue());
+            transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+             _player.Rotate(Vector3.up, GetHorizontalValue());
         }
 
 

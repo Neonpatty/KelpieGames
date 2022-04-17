@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bait : Items
 {
@@ -8,9 +9,9 @@ public class Bait : Items
 
     public List<FishFlock> Fishes = new List<FishFlock>();
 
-    public override void UseAbility(Transform player)
+    public override void UseAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
     {
-        Instantiate(this, player.position + player.forward * 2, Quaternion.identity);
+        Instantiate(this, cam.transform.position + cam.transform.forward * 2, Quaternion.identity);
     }
 
     void Update()
