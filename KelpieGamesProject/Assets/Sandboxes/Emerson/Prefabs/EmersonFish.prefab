@@ -49,6 +49,7 @@ MonoBehaviour:
   speedMin: 3
   speed: 4
   FoundBait: {fileID: 0}
+  canMove: 0
   neighbourDistance: 1
 --- !u!65 &502745839063993179
 BoxCollider:

@@ -9,12 +9,16 @@ public class Net : Items
     [SerializeField] float _shootForce;
     [SerializeField] Transform _caughtPoint;
     [SerializeField] float _upTime;
+    [SerializeField] MeshRenderer _netMesh1, _netMesh2, _netMeshCaught;
+
     List<FishFlock> _allFish = new List<FishFlock>();
 
     public override void UseAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
     {
+        _netMeshCaught.enabled = false;
+        var offset = new Vector3(0, 0.2f, 0); // Intended to tilt Net when shot, remove if inadequate
         var me = Instantiate(this, cam.transform.position + cam.transform.forward * 2, cam.transform.rotation);
-        me.GetComponent<Rigidbody>().AddForce(cam.transform.forward * _shootForce, ForceMode.Force);
+        me.GetComponent<Rigidbody>().AddForce((cam.transform.forward + offset) * _shootForce, ForceMode.Force);
     }
 
     void Update()
@@ -22,16 +26,13 @@ public class Net : Items
         _upTime -= Time.deltaTime;
         if (_upTime <= 0)
         {
-
             foreach (var fish in _allFish)
             {
                 fish.transform.parent = null;
                 fish.transform.position += new Vector3(0, 1, 0);
                 fish.transform.rotation = new Quaternion(0, 0, 0, 0);
                 fish.ChangeFishState(FishState.Swimming);
-
             }
-
             Destroy(gameObject);
         }
     }
@@ -40,6 +41,12 @@ public class Net : Items
     {
         if (other.TryGetComponent(out FishFlock fish))
         {
+            if (fish.State == FishState.Caught) return;
+
+            _netMeshCaught.enabled = true;
+            _netMesh1.enabled = false;
+            _netMesh2.enabled = false;
+
             fish.ChangeFishState(FishState.Caught);
             fish.transform.parent = _caughtPoint;
             fish.transform.position = _caughtPoint.transform.position;
@@ -47,14 +54,5 @@ public class Net : Items
             _allFish.Add(fish);
             fish.canMove = false;
         }
-        else if (other.gameObject.layer == LayerMask.GetMask("Environment"))
-        {
-            Destroy(_rb);
-        }
-    }
-
-    Quaternion SetZRot(Quaternion oldRot, int newZ)
-    {
-        return new Quaternion(oldRot.x, oldRot.y, newZ, oldRot.w);
     }
 }

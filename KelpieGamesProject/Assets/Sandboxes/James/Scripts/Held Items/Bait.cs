@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class Bait : Items
 {
+    public float UpTime;
     public float Durability;
 
-    public List<FishFlock> Fishes = new List<FishFlock>();
+    public List<FishFlock> Fishes { get; private set; } = new List<FishFlock>();
 
     public override void UseAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
     {
@@ -16,7 +17,12 @@ public class Bait : Items
 
     void Update()
     {
-        if (Fishes.Count <= 0) return;
+        if (Fishes.Count <= 0)
+        {
+            UpTime -= Time.deltaTime;
+            if (UpTime <= 0) Destroy(gameObject);
+            return;
+        }
 
         Durability -= Fishes.Count * Time.deltaTime;
         if (Durability <= 0)
@@ -34,7 +40,7 @@ public class Bait : Items
     {
         if (other.TryGetComponent(out FishFlock fish))
         {
-            if (fish.FoundBait) return;
+            if (fish.FoundBait || fish.State == FishState.Caught) return;
 
             fish.FoundBait = this;
             fish.ChangeFishState(FishState.Eating);

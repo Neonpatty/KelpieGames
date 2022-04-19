@@ -14,12 +14,12 @@ public class FishFlock : MonoBehaviour
     public float speedMax;
     public float speedMin;
     public float speed;
-    private FishState _state;
+    public FishState State { get; private set; }
     public Bait FoundBait = null;
 
     public bool canMove; //override fish movement
     [Tooltip("How fast the fish rotate")]
-    float rotationSpeed = 4.0f; //turning speed
+    float rotationSpeed = 6.0f; //turning speed
 
     [Tooltip("Fish closer than this distance will flock together, otherwise they will go off by themselves")]
     public float neighbourDistance = 1;
@@ -38,7 +38,7 @@ public class FishFlock : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() //Logic runs in fixed update, movement runs in late update = silky smooth at low CPU cost
     {
-        switch (_state)
+        switch (State)
         {
             case FishState.Swimming:
                 AimlessSwimming();
@@ -58,7 +58,7 @@ public class FishFlock : MonoBehaviour
 
     public void ChangeFishState(FishState newState)
     {
-        _state = newState;
+        State = newState;
     }
 
     void MovingToEat()
@@ -71,10 +71,10 @@ public class FishFlock : MonoBehaviour
         var baitPos = FoundBait.transform.position;
         var direction = baitPos - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(direction),
+                Quaternion.LookRotation(direction).SetZRotation(0),
                 rotationSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(baitPos, transform.position) < 0.5f)
+        if (Vector3.Distance(baitPos, transform.position) < 0.15f)
         {
             if (!FoundBait.Fishes.Contains(this)) FoundBait.Fishes.Add(this);
             canMove = false;
@@ -127,10 +127,8 @@ public class FishFlock : MonoBehaviour
 
     Quaternion TurnInDirection(Vector3 direction)
     {
-        
-        
         return Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(direction),
+                Quaternion.LookRotation(direction).SetZRotation(0),
                 rotationSpeed * Time.deltaTime);
     }
 

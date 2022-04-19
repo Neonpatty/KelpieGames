@@ -10,14 +10,17 @@ namespace JamesNamespace
     {
         public static ItemHandler Instance { get; private set; }
 
-        [SerializeField] RawImage _cameraImage;
-        public GameObject _cameraFrame, itemWheel, _captureImage;
-
         public List<ScriptableItem> AllItemsList;
         private Dictionary<int, ScriptableItem> _items;
-
         private ScriptableItem HeldItem = null;
+
+        [Space]
+        [Header("UI Elements in Scene")]
+
+        [SerializeField] RawImage _cameraImage;
+        public GameObject _cameraFrame, itemWheel, _captureImage;
         public Image SlotEquipped, SlotLower, SlotUpper;
+
         public bool isAimingCamera { get; private set; }
 
         void Awake()
