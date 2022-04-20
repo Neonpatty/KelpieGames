@@ -10,6 +10,8 @@ namespace JamesNamespace
     {
         public static ItemHandler Instance { get; private set; }
 
+        [SerializeField] AudioSource _audSource;
+        [SerializeField] AudioClip _itemSwapClip;
         public List<ScriptableItem> AllItemsList;
         private Dictionary<int, ScriptableItem> _items;
         private ScriptableItem HeldItem = null;
@@ -45,6 +47,11 @@ namespace JamesNamespace
             if (Input.GetMouseButtonDown(0))
             {
                 HeldItem.Script.UseAbility(Camera.main, _cameraImage, this);
+                if (IsPlayerHoldingCamera())
+                {
+                    if (isAimingCamera) _audSource.PlayClip(HeldItem.Audio);
+                }
+                else _audSource.PlayClip(HeldItem.Audio);
             }
 
             if (Input.GetMouseButton(1) && IsPlayerHoldingCamera())
@@ -91,6 +98,9 @@ namespace JamesNamespace
                 if (itemIndex >= _items.Count - 1) EquipItem(0);
                 else EquipItem(itemIndex + 1);
 
+                float randPitch = Random.Range(-10, 11) / 100;
+                _audSource.PlayClip(_itemSwapClip, randPitch);
+
                 UpdateIcons();
                 Debug.Log("Equipped Item: " + HeldItem.Name);
             }
@@ -100,6 +110,9 @@ namespace JamesNamespace
 
                 if (itemIndex <= 0) EquipItem(_items.Count - 1);
                 else EquipItem(itemIndex - 1);
+
+                float randPitch = Random.Range(-10, 11) / 100;
+                _audSource.PlayClip(_itemSwapClip, randPitch);
 
                 UpdateIcons();
                 Debug.Log("Equipped Item: " + HeldItem.Name);

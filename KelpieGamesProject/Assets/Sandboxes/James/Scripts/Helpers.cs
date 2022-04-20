@@ -5,6 +5,20 @@ using UnityEngine;
 
 public static class Helpers
 {
+
+    public static void PlayClip(this AudioSource audSource, AudioClip newClip)
+    {
+        audSource.clip = newClip;
+        audSource.Play();
+    }
+    public static void PlayClip(this AudioSource audSource, AudioClip newClip, float pitchFactor)
+    {
+        audSource.pitch += pitchFactor;
+        audSource.clip = newClip;
+        audSource.Play();
+
+        audSource.pitch -= pitchFactor;
+    }
     public static Quaternion SetZRotation(this Quaternion oldRot, float newZRot)
     {
         var newX = oldRot.x;

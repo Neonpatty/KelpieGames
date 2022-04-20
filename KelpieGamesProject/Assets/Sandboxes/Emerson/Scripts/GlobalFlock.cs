@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class GlobalFlock : MonoBehaviour
 {
-    public static GlobalFlock Instance;
-
-    void Awake() => Instance = this;
-
     public FishFlock fishPrefab;
     public Transform goalPrefab; //where the fish are trying to go to
     public int tankSizeX = 50; //Size of the play area (meters)
@@ -33,7 +29,7 @@ public class GlobalFlock : MonoBehaviour
         {
             Vector3 pos = RandomPosInCube(tankSizeX, tankSizeY, tankSizeZ);
             allFish[i] = Instantiate(fishPrefab, pos, Quaternion.identity);
-            
+            allFish[i].SetOrigin(this);
         }
         playerRef = FindObjectOfType<JamesNamespace.SwimmingController>();
 

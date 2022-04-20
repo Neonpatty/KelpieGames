@@ -36699,6 +36699,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1582234808}
     - target: {fileID: 5996579139484237266, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: _audSource
+      value: 
+      objectReference: {fileID: 5996579139528712347}
+    - target: {fileID: 5996579139484237266, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: cameraFrame
       value: 
       objectReference: {fileID: 421962393}
@@ -36824,3 +36828,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+--- !u!82 &5996579139528712347 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 996379475669077069, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+  m_PrefabInstance: {fileID: 5996579139528712346}
+  m_PrefabAsset: {fileID: 0}

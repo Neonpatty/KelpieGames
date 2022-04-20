@@ -11,6 +11,8 @@ public enum FishState
 
 public class FishFlock : MonoBehaviour
 {
+    public GlobalFlock OriginRef { get; private set; }
+
     public float speedMax;
     public float speedMin;
     public float speed;
@@ -30,7 +32,7 @@ public class FishFlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turnDir = GlobalFlock.Instance.transform.position;
+        turnDir = OriginRef.transform.position;
         speed = Random.Range(speedMin, speedMax);
         Application.targetFrameRate = 300;
     }
@@ -59,6 +61,11 @@ public class FishFlock : MonoBehaviour
     public void ChangeFishState(FishState newState)
     {
         State = newState;
+    }
+
+    public void SetOrigin(GlobalFlock origin)
+    {
+        OriginRef = origin;
     }
 
     void MovingToEat()
@@ -101,10 +108,10 @@ public class FishFlock : MonoBehaviour
 
                 turnDir = (newHitPos - transform.position) * -1;
             }
-            else if (Vector3.Distance(transform.position, Vector3.zero) >= GlobalFlock.Instance.tankSizeX)
+            else if (Vector3.Distance(transform.position, Vector3.zero) >= OriginRef.tankSizeX)
             {
                 turning = true;
-                var originPos = GlobalFlock.Instance.transform.position;
+                var originPos = OriginRef.transform.position;
                 turnDir = originPos - transform.position;
             }
             else
@@ -135,13 +142,13 @@ public class FishFlock : MonoBehaviour
     void ApplyRules()
     {
         FishFlock[] fishes;
-        fishes = GlobalFlock.Instance.allFish;
+        fishes = OriginRef.allFish;
 
         Vector3 vcentre = Vector3.zero; //center of group
         Vector3 vavoid = Vector3.zero; //points away from fish neighbours
         float gSpeed = 0.1f;
 
-        Vector3 goalPos = GlobalFlock.Instance.goalPos;
+        Vector3 goalPos = OriginRef.goalPos;
 
         float dist;
 
