@@ -28,7 +28,8 @@ public class GlobalFlock : MonoBehaviour
         for(int i=0; i< numFish; i++)
         {
             Vector3 pos = RandomPosInCube(tankSizeX, tankSizeY, tankSizeZ);
-            allFish[i] = Instantiate(fishPrefab, pos, Quaternion.identity);
+            Quaternion rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            allFish[i] = Instantiate(fishPrefab, pos, rot);
             allFish[i].SetOrigin(this);
         }
         playerRef = FindObjectOfType<JamesNamespace.SwimmingController>();

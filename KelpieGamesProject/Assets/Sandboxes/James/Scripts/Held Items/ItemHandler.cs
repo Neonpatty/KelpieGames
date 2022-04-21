@@ -51,7 +51,7 @@ namespace JamesNamespace
                 {
                     if (isAimingCamera) _audSource.PlayClip(HeldItem.Audio);
                 }
-                else _audSource.PlayClip(HeldItem.Audio);
+                else _audSource.PlayClip(HeldItem.Audio, Random.Range(-10, 11) / 100);
             }
 
             if (Input.GetMouseButton(1) && IsPlayerHoldingCamera())

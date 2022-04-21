@@ -93,11 +93,18 @@ public class FishFlock : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        var direction = transform.TransformDirection(Vector3.forward) * 5;
+        Gizmos.DrawRay(transform.position, direction);
+    }
+
     void AimlessSwimming()
     {
         canMove = true;
 
-        if (Random.Range(0, 20) < 1)
+        if (Random.Range(0, 15) < 1)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Environment")))
