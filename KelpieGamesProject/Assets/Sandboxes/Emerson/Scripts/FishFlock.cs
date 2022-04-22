@@ -32,6 +32,7 @@ public class FishFlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        OriginRef = GameObject.FindObjectOfType<GlobalFlock>();
         turnDir = OriginRef.transform.position;
         speed = Random.Range(speedMin, speedMax);
         Application.targetFrameRate = 300;
