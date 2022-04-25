@@ -11,7 +11,7 @@ public enum FishState
 
 public class FishFlock : MonoBehaviour
 {
-    public GlobalFlock OriginRef { get; private set; }
+    public GlobalFlock OriginRef;
 
     public float speedMax;
     public float speedMin;
@@ -149,7 +149,7 @@ public class FishFlock : MonoBehaviour
 
     void ApplyRules()
     {
-        FishFlock[] fishes;
+        List<FishFlock> fishes;
         fishes = OriginRef.allFish;
 
         Vector3 vcentre = Vector3.zero; //center of group
