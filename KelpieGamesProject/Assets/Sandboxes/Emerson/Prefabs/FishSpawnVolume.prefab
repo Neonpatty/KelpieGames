@@ -109,10 +109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weightedValues:
-  - GameObjectToSpawn: {fileID: 6003253626783285189, guid: 80fbdf764a07d3a4891cc3ad92baf052, type: 3}
-    weight: 5
-  - GameObjectToSpawn: {fileID: 4267237955213066799, guid: 0fffb7abba5dcd34db9540fa08b4a2de, type: 3}
-    weight: 1
-  - GameObjectToSpawn: {fileID: 8187900340660858059, guid: de612913ddf17c04da52ad10d2238024, type: 3}
-    weight: 1
+  - PrefabToSpawn: {fileID: 2080180286227831063, guid: 80fbdf764a07d3a4891cc3ad92baf052, type: 3}
+    Weight: 5
+  - PrefabToSpawn: {fileID: 9184876037507958922, guid: cc4de2e1d765a18459b5635811a25759, type: 3}
+    Weight: 2
+  - PrefabToSpawn: {fileID: 584009883953918667, guid: c4a4ae5b03d860c42bd1264ce719a919, type: 3}
+    Weight: 2
   fishToSpawn: 50

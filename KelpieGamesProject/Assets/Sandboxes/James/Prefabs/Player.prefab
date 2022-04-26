@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5974430915293432502}
   - component: {fileID: 712288399136684253}
   - component: {fileID: 6415713209981725293}
+  - component: {fileID: 375061410}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5996579139119026120}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dfa731575f5d52468f89ebe3b7193d6, type: 3}
   m_Name: 
@@ -224,6 +225,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 28.087635}
   m_Center: {x: 0, y: 0, z: 14.5438175}
+--- !u!114 &375061410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5996579139119026120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607e2ec6b4828614c89213cd5f63ff78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 1
+  yRotationLimit: 88
 --- !u!1 &5996579139484237275
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSwimSpeed: 4
-  _swimSpeed: 0
+  _swimSpeed: 20
   _rb: {fileID: 5996579139484237277}
   cameraGameObject: {fileID: 5996579139119026127}
 --- !u!114 &2306186110025729350
@@ -358,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccc71f0edcb2df40b58a5574315f3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMultiplier: 4
+  _speedMultiplier: 2
 --- !u!114 &5996579139484237267
 MonoBehaviour:
   m_ObjectHideFlags: 0
