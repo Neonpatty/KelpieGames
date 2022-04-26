@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3523683772156849752
+--- !u!1 &5294933557748772594
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3813851494157390242}
-  - component: {fileID: 9184876037507958922}
-  - component: {fileID: 7301294079503932102}
+  - component: {fileID: 5580034734119358728}
+  - component: {fileID: 498489621260683296}
+  - component: {fileID: 2075783347587521132}
   m_Layer: 7
-  m_Name: LeopardGrouper
+  m_Name: LeopardGrouperTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3813851494157390242
+--- !u!4 &5580034734119358728
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523683772156849752}
+  m_GameObject: {fileID: 5294933557748772594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.93, y: 8.373313, z: 1.39}
   m_LocalScale: {x: 39.69223, y: 39.69223, z: 39.69223}
   m_Children:
-  - {fileID: 8709673253795706725}
+  - {fileID: 90978064701863887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9184876037507958922
+--- !u!114 &498489621260683296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523683772156849752}
+  m_GameObject: {fileID: 5294933557748772594}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee13f6c7fadda464299fff159919e41c, type: 3}
@@ -51,25 +51,25 @@ MonoBehaviour:
   FoundBait: {fileID: 0}
   canMove: 0
   neighbourDistance: 1
---- !u!65 &7301294079503932102
+--- !u!65 &2075783347587521132
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523683772156849752}
+  m_GameObject: {fileID: 5294933557748772594}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.02529536, y: 0.057236813, z: 0.13914034}
   m_Center: {x: -0.001357152, y: 0.0030457773, z: -0.04257171}
---- !u!1001 &8709673253795320711
+--- !u!1001 &90978064702264109
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3813851494157390242}
+    m_TransformParent: {fileID: 5580034734119358728}
     m_Modifications:
     - target: {fileID: 130378, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
       propertyPath: m_Layer
@@ -164,21 +164,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7667119378798076305, guid: f6bab0d114d943f4f854a8531de64674, type: 3}
     - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
-      propertyPath: m_AABB.m_Center.z
-      value: -26.657135
-      objectReference: {fileID: 0}
-    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
-      propertyPath: m_AABB.m_Extent.z
-      value: 42.633286
-      objectReference: {fileID: 0}
-    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 83307a022e571ef4583a335cdc83b7ad, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
---- !u!4 &8709673253795706725 stripped
+--- !u!4 &90978064701863887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 419042, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
-  m_PrefabInstance: {fileID: 8709673253795320711}
+  m_PrefabInstance: {fileID: 90978064702264109}
   m_PrefabAsset: {fileID: 0}

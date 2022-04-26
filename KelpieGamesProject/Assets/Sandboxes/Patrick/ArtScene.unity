@@ -1513,6 +1513,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4854725574713348099, guid: c4a4ae5b03d860c42bd1264ce719a919, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4864002258969504739, guid: c4a4ae5b03d860c42bd1264ce719a919, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1573,6 +1577,10 @@ PrefabInstance:
     - target: {fileID: 3523683772156849752, guid: cc4de2e1d765a18459b5635811a25759, type: 3}
       propertyPath: m_Name
       value: LeopardGrouper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761243198307969602, guid: cc4de2e1d765a18459b5635811a25759, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3813851494157390242, guid: cc4de2e1d765a18459b5635811a25759, type: 3}
       propertyPath: m_RootOrder
