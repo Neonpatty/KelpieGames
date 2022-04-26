@@ -9374,7 +9374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579601781793166128, guid: e9e0b4d00e7ec4840bd40ef824274d5d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 47.052002
+      value: 177.32959
       objectReference: {fileID: 0}
     - target: {fileID: 5579601781793166128, guid: e9e0b4d00e7ec4840bd40ef824274d5d, type: 3}
       propertyPath: m_LocalScale.z
@@ -9399,7 +9399,7 @@ PrefabInstance:
     - target: {fileID: 5579601783028212055, guid: e9e0b4d00e7ec4840bd40ef824274d5d, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: de427e439e0b9e645badd090247d8f0c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5579601783102152934, guid: e9e0b4d00e7ec4840bd40ef824274d5d, type: 3}
       propertyPath: m_LocalScale.y
       value: 134.9

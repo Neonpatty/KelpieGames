@@ -102,7 +102,6 @@ namespace JamesNamespace
                 _audSource.PlayClip(_itemSwapClip, randPitch);
 
                 UpdateIcons();
-                Debug.Log("Equipped Item: " + HeldItem.Name);
             }
             else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.Q))
             {
@@ -115,7 +114,6 @@ namespace JamesNamespace
                 _audSource.PlayClip(_itemSwapClip, randPitch);
 
                 UpdateIcons();
-                Debug.Log("Equipped Item: " + HeldItem.Name);
             }
         }
 

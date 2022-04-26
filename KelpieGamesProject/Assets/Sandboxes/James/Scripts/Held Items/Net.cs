@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Net : Items
 {
     [SerializeField] Rigidbody _rb;
-    [SerializeField] float _shootForce;
+    [SerializeField] float _shootForce, _moveSpeed;
     [SerializeField] Transform _caughtPoint;
     [SerializeField] float _upTime;
     [SerializeField] MeshRenderer _netMesh1, _netMesh2, _netMeshCaught;
@@ -35,6 +35,8 @@ public class Net : Items
             }
             Destroy(gameObject);
         }
+
+        if (_rb.velocity.magnitude > _moveSpeed) _rb.velocity = _rb.velocity.normalized * _moveSpeed;
     }
 
     void OnTriggerEnter(Collider other)
