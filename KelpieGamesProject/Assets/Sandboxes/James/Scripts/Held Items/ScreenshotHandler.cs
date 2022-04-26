@@ -49,7 +49,8 @@ namespace JamesNamespace
 
             var fishLayer = LayerMask.GetMask("Fish");
             var environLayer = LayerMask.GetMask("Environment");
-
+            float closestFishDist = 1000;
+           // FishFlock closestFishRef;
             collider.enabled = false;
             for (i = 0; i < objectsInBox.Count; i++) //fish found
             {
@@ -63,8 +64,12 @@ namespace JamesNamespace
                 }
                 else
                 {
-
-                    textRef.text = "You captured a: " + objectsInBox[i].GetComponent<FishFlock>().fishName;
+                    if(Vector3.Distance(Camera.main.transform.position, objectsInBox[i].transform.position) <= closestFishDist)
+                    {
+                        closestFishDist = Vector3.Distance(Camera.main.transform.position, objectsInBox[i].transform.position);
+                        //closestFishRef = objectsInBox[i];
+                        textRef.text = "You captured a: " + objectsInBox[i].GetComponent<FishFlock>().fishName;
+                    }
                 }
                 print(fishInLOS.collider);
 
@@ -81,7 +86,7 @@ namespace JamesNamespace
         {
             var canvas = camImage.GetComponentInParent<Canvas>();
             Text textCanvas = canvas.GetComponentInChildren<Text>();
-
+            print(cameraRange);
             float frustumHeight = 2.0f * cameraRange * Mathf.Tan(12 * 0.5f * Mathf.Deg2Rad);
           
             Camera.main.GetComponent<BoxCollider>().center = new Vector3(0, 0, cameraRange/2);
@@ -107,7 +112,7 @@ namespace JamesNamespace
         public IEnumerator EnableImageInUI(RawImage image)
         {
             image.enabled = true;
-            yield return Helpers.GetWait(2f);
+            yield return Helpers.GetWait(5f);
             Text textCanvas = image.gameObject.transform.parent.GetComponentInChildren<Text>();
             textCanvas.text = "";
             image.enabled = false;
