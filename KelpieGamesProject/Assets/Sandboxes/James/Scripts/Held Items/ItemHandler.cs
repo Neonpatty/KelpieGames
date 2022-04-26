@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using UnityEngine.Rendering.PostProcessing;
 namespace JamesNamespace
 {
     public class ItemHandler : MonoBehaviour
@@ -20,11 +19,17 @@ namespace JamesNamespace
         [Header("UI Elements in Scene")]
 
         [SerializeField] RawImage _cameraImage;
+        [SerializeField] Text _textRef;
+
         public GameObject _cameraFrame, itemWheel, _captureImage;
         public Image SlotEquipped, SlotLower, SlotUpper;
 
         public bool isAimingCamera { get; private set; }
 
+        float targetCameraFov;
+        PostProcessVolume volume;
+        Vignette vingetteRef;
+        float vingetteIntensity;
         void Awake()
         {
             Instance = this;
@@ -38,6 +43,8 @@ namespace JamesNamespace
             HeldItem = _items[0];
             UpdateIcons();
             _cameraImage.enabled = false;
+            volume = GameObject.FindObjectOfType<PostProcessVolume>();
+            volume.profile.TryGetSettings(out vingetteRef);
         }
 
         void Update()
@@ -57,12 +64,19 @@ namespace JamesNamespace
             if (Input.GetMouseButton(1) && IsPlayerHoldingCamera())
             {
                 isAimingCamera = true;
+                targetCameraFov = 25;
+                vingetteIntensity = 1;
             }
             else
             {
                 isAimingCamera = false;
+                targetCameraFov = 60;
+                vingetteIntensity = 0.8f;
+
             }
             ChangeCameraState(isAimingCamera);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetCameraFov, 10 * Time.deltaTime);
+            vingetteRef.intensity.value = Mathf.Lerp(vingetteRef.intensity.value, vingetteIntensity, 10 * Time.deltaTime);
         }
 
         void ChangeCameraState(bool isAimingCamera)
@@ -70,19 +84,23 @@ namespace JamesNamespace
             switch (isAimingCamera)
             {
                 case true:
-                    Camera.main.fieldOfView = 25;
-                    _cameraFrame.SetActive(true);
+                    //Camera.main.fieldOfView = 25;
+                    //_cameraFrame.SetActive(true);
+                    _textRef.enabled = false; 
                     itemWheel.SetActive(false);
                     _captureImage.SetActive(false);
                     break;
                 case false:
-                    Camera.main.fieldOfView = 60;
-                    _cameraFrame.SetActive(false);
+                    // Camera.main.fieldOfView = 60;
+                    //_cameraFrame.SetActive(false);
+                    _textRef.enabled = true;
                     itemWheel.SetActive(true);
                     _captureImage.SetActive(true);
                     break;
             }
         }
+
+
 
         bool IsPlayerHoldingCamera()
         {

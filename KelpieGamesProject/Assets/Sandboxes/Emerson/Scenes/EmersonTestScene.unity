@@ -22392,6 +22392,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 412710, guid: 0cf2060e4823cef49b801e0958cda3f2, type: 3}
   m_PrefabInstance: {fileID: 616175440}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &619164811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7579815447507249200, guid: 224aed2b9d1e0a847b52e8dbe204dc24, type: 3}
+  m_PrefabInstance: {fileID: 887450625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &619333171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31798,6 +31809,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8975859984538871119, guid: 224aed2b9d1e0a847b52e8dbe204dc24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224aed2b9d1e0a847b52e8dbe204dc24, type: 3}
 --- !u!1 &887450626 stripped
@@ -32430,6 +32445,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5996579139484237266, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: _textRef
+      value: 
+      objectReference: {fileID: 619164811}
     - target: {fileID: 5996579139484237266, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: SlotLower
       value: 
@@ -40057,7 +40076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1148614361
 MonoBehaviour:
   m_ObjectHideFlags: 0

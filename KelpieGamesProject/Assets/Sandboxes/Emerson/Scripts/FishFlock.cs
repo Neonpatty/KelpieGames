@@ -11,6 +11,7 @@ public enum FishState
 
 public class FishFlock : MonoBehaviour
 {
+    public string fishName;
     public SpawnWithinBox OriginRef { get; private set; }
     public GlobalFlock ManagerRef { get; private set; }
 
