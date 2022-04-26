@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13f6c7fadda464299fff159919e41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishName: Standard Fish
   speedMax: 5
   speedMin: 3
   speed: 4

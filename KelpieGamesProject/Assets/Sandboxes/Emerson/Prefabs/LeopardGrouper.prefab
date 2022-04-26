@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13f6c7fadda464299fff159919e41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishName: Leopard Grouper
   speedMax: 5
   speedMin: 3
   speed: 4
@@ -163,6 +164,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -7667119378798076305, guid: f6bab0d114d943f4f854a8531de64674, type: 3}
+    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: -0.60571766
+      objectReference: {fileID: 0}
+    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: -26.657135
+      objectReference: {fileID: 0}
+    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 11.156587
+      objectReference: {fileID: 0}
+    - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 42.633286
+      objectReference: {fileID: 0}
     - target: {fileID: 13721486, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

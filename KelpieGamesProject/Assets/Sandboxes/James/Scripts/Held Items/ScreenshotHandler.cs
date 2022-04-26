@@ -64,14 +64,14 @@ namespace JamesNamespace
                 else
                 {
 
-                    textRef.text = "FISHIE IN FIRST :)!";
+                    textRef.text = "You captured a: " + objectsInBox[i].GetComponent<FishFlock>().fishName;
                 }
                 print(fishInLOS.collider);
 
             }
             if (i == 0) //no fish found
             {
-                textRef.text = "No fishie :(";
+                textRef.text = "No fishes in range.";
             }
             collider.enabled = true;
 
