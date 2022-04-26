@@ -7004,11 +7004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2290737584669991080, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: weightedValues.Array.data[1].Weight
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2290737584669991080, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: weightedValues.Array.data[2].Weight
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2290737584669991080, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: weightedValues.Array.data[0].PrefabToSpawn
@@ -7017,11 +7017,11 @@ PrefabInstance:
     - target: {fileID: -2290737584669991080, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: weightedValues.Array.data[1].PrefabToSpawn
       value: 
-      objectReference: {fileID: 8406489738664830205, guid: 0fffb7abba5dcd34db9540fa08b4a2de, type: 3}
+      objectReference: {fileID: 9184876037507958922, guid: cc4de2e1d765a18459b5635811a25759, type: 3}
     - target: {fileID: -2290737584669991080, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: weightedValues.Array.data[2].PrefabToSpawn
       value: 
-      objectReference: {fileID: 4481323888893790745, guid: de612913ddf17c04da52ad10d2238024, type: 3}
+      objectReference: {fileID: 584009883953918667, guid: c4a4ae5b03d860c42bd1264ce719a919, type: 3}
     - target: {fileID: 838721957913774608, guid: 19b34a2585317764083a72c249e23155, type: 3}
       propertyPath: m_RootOrder
       value: 23
