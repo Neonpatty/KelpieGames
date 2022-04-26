@@ -1,10 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 public static class Helpers
 {
+
+    public static async Task DecreaseVolumeToZero(this AudioSource audSource)
+    {
+        var vol = audSource.volume;
+        while (vol > 0)
+        {
+            vol -= 1 * Time.deltaTime;
+            audSource.volume = vol;
+            await Task.Yield();
+        }
+    }
+
+    public static async Task IncreaseVolumeToOne(this AudioSource audSource)
+    {
+        var vol = audSource.volume;
+        while (vol < 1)
+        {
+            vol += 1 * Time.deltaTime;
+            audSource.volume = vol;
+            await Task.Yield();
+        }
+    }
 
     public static void PlayClip(this AudioSource audSource, AudioClip newClip)
     {

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SpawnWithinBox : MonoBehaviour
 {
-    public List<objectsToSpawn> weightedValues;
+    public List<FishObject> weightedValues;
     public int fishToSpawn;
     
     [System.Serializable]
-    public class objectsToSpawn
+    public class FishObject
     {
-        public GameObject GameObjectToSpawn;
-        public int weight;
+        public FishFlock PrefabToSpawn;
+        public int Weight;
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GlobalFlock GF = FindObjectOfType<GlobalFlock>();
         print(GF);
@@ -26,25 +26,26 @@ public class SpawnWithinBox : MonoBehaviour
             float offsetZ = Random.Range(-bounds.extents.z, bounds.extents.z);
             Quaternion rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
-            GameObject newFish = GameObject.Instantiate(GetRandomValue(weightedValues));
+            var newFish = Instantiate(GetWeightedFish(weightedValues));
 
             newFish.transform.position = bounds.center + new Vector3(offsetX, offsetY, offsetZ);
             newFish.transform.rotation = rot;
 
-            newFish.GetComponent<FishFlock>().SetOrigin(GF);
-            GF.allFish.Add(newFish.GetComponent<FishFlock>());
+            newFish.SetOrigin(this);
+            newFish.SetManager(GF);
+            GF.allFish.Add(newFish);
         }
     }
 
-    GameObject GetRandomValue(List<objectsToSpawn> weightedValueList)
+    FishFlock GetWeightedFish(List<FishObject> weightedValueList)
     {
-        GameObject output = null;
+        FishFlock output = null;
 
         //Getting a random weight value
         var totalWeight = 0;
         foreach (var entry in weightedValueList)
         {
-            totalWeight += entry.weight;
+            totalWeight += entry.Weight;
         }
         var rndWeightValue = Random.Range(1, totalWeight + 1);
 
@@ -52,20 +53,15 @@ public class SpawnWithinBox : MonoBehaviour
         var processedWeight = 0;
         foreach (var entry in weightedValueList)
         {
-            processedWeight += entry.weight;
+            processedWeight += entry.Weight;
             if (rndWeightValue <= processedWeight)
             {
-                output = entry.GameObjectToSpawn;
+                output = entry.PrefabToSpawn;
                 break;
             }
         }
 
         return output;
     }
-    
-    
-
-    
-
 
 }

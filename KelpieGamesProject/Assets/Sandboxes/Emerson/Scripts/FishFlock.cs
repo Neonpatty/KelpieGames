@@ -11,7 +11,8 @@ public enum FishState
 
 public class FishFlock : MonoBehaviour
 {
-    public GlobalFlock OriginRef;
+    public SpawnWithinBox OriginRef { get; private set; }
+    public GlobalFlock ManagerRef { get; private set; }
 
     public float speedMax;
     public float speedMin;
@@ -32,8 +33,8 @@ public class FishFlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OriginRef = GameObject.FindObjectOfType<GlobalFlock>();
-        turnDir = OriginRef.transform.position;
+        //ManagerRef = GameObject.FindObjectOfType<GlobalFlock>();
+        
         speed = Random.Range(speedMin, speedMax);
         Application.targetFrameRate = 300;
     }
@@ -64,9 +65,14 @@ public class FishFlock : MonoBehaviour
         State = newState;
     }
 
-    public void SetOrigin(GlobalFlock origin)
+    public void SetOrigin(SpawnWithinBox origin)
     {
         OriginRef = origin;
+        turnDir = OriginRef.transform.position;
+    }
+    public void SetManager(GlobalFlock origin)
+    {
+        ManagerRef = origin;
     }
 
     void MovingToEat()
@@ -108,6 +114,7 @@ public class FishFlock : MonoBehaviour
         if (Random.Range(0, 15) < 1)
         {
             RaycastHit hit;
+            var originDist = Vector3.Distance(transform.position, OriginRef.transform.position);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Environment")))
             {
                 turning = true;
@@ -116,7 +123,8 @@ public class FishFlock : MonoBehaviour
 
                 turnDir = (newHitPos - transform.position) * -1;
             }
-            else if (Vector3.Distance(transform.position, Vector3.zero) >= OriginRef.tankSizeX)
+            else if (originDist >= OriginRef.transform.localScale.x / 2 ||
+                     originDist >= OriginRef.transform.localScale.z / 2)
             {
                 turning = true;
                 var originPos = OriginRef.transform.position;
@@ -150,13 +158,13 @@ public class FishFlock : MonoBehaviour
     void ApplyRules()
     {
         List<FishFlock> fishes;
-        fishes = OriginRef.allFish;
+        fishes = ManagerRef.allFish;
 
         Vector3 vcentre = Vector3.zero; //center of group
         Vector3 vavoid = Vector3.zero; //points away from fish neighbours
         float gSpeed = 0.1f;
 
-        Vector3 goalPos = OriginRef.goalPos;
+        Vector3 goalPos = ManagerRef.goalPos;
 
         float dist;
 
