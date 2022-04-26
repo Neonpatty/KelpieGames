@@ -3601,6 +3601,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2306186110025729350, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: _speedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5996579139119026120, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3650,8 +3654,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5996579139484237276, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: _swimSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996579139484237276, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: _maxSwimSpeed
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5996579139484237279, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: m_RootOrder

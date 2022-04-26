@@ -36816,6 +36816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5996579139484237276, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
+      propertyPath: _swimSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5996579139484237279, guid: fe325a93af94f814a9805f794a08fd70, type: 3}
       propertyPath: m_RootOrder
       value: 1

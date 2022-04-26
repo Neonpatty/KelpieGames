@@ -10,5 +10,8 @@ public abstract class Items : MonoBehaviour
 
     }
 
-    
+    public virtual void StopAbility(Camera cam, RawImage camImage, JamesNamespace.ItemHandler itemHandler)
+    {
+
+    }
 }

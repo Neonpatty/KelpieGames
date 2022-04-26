@@ -61,6 +61,12 @@ namespace JamesNamespace
                 else _audSource.PlayClip(HeldItem.Audio, Random.Range(-10, 11) / 100);
             }
 
+            if (Input.GetMouseButtonUp(0) && IsPlayerHoldingSeaGlider())
+            {
+                HeldItem.Script.StopAbility(Camera.main, _cameraImage, this);
+                _audSource.Stop();
+            }
+
             if (Input.GetMouseButton(1) && IsPlayerHoldingCamera())
             {
                 isAimingCamera = true;
@@ -105,6 +111,11 @@ namespace JamesNamespace
         bool IsPlayerHoldingCamera()
         {
             return HeldItem.Name == "Camera" ? true : false;
+        }
+
+        bool IsPlayerHoldingSeaGlider()
+        {
+            return HeldItem.Name == "SeaGlider" ? true : false;
         }
 
         void ChangeHeldEquipment()

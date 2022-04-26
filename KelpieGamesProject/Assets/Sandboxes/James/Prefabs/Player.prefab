@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 5996579139484237273}
   - component: {fileID: 5996579139484237272}
   - component: {fileID: 5996579139484237276}
+  - component: {fileID: 2306186110025729350}
   - component: {fileID: 5996579139484237267}
   - component: {fileID: 5996579139484237266}
   - component: {fileID: 5996579139484237277}
@@ -342,9 +343,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSwimSpeed: 4
-  swimSpeed: 20
+  _swimSpeed: 0
   _rb: {fileID: 5996579139484237277}
   cameraGameObject: {fileID: 5996579139119026127}
+--- !u!114 &2306186110025729350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5996579139484237275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccc71f0edcb2df40b58a5574315f3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMultiplier: 4
 --- !u!114 &5996579139484237267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +396,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b8d31c37d4364846887ceb65721e46f, type: 2}
   - {fileID: 11400000, guid: 08528c9c6870e484db51fdde60484794, type: 2}
   - {fileID: 11400000, guid: 2db78803db6826247846948d39b31ef9, type: 2}
+  - {fileID: 11400000, guid: 7a249329907dee04c833e443573f8933, type: 2}
   _cameraImage: {fileID: 0}
+  _textRef: {fileID: 0}
   _cameraFrame: {fileID: 0}
   itemWheel: {fileID: 0}
   _captureImage: {fileID: 0}

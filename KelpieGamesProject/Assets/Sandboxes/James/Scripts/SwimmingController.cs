@@ -6,7 +6,7 @@ namespace JamesNamespace
 {
     public class SwimmingController : MonoBehaviour
     {
-        [SerializeField] float _maxSwimSpeed, swimSpeed;
+        [SerializeField] float _maxSwimSpeed, _swimSpeed;
         [SerializeField] Rigidbody _rb;
         [SerializeField] Transform cameraGameObject;
         
@@ -33,8 +33,8 @@ namespace JamesNamespace
             var inputX = Input.GetAxisRaw("Horizontal");
             var inputY = Input.GetAxisRaw("Vertical");
 
-            _rb.AddForce(cameraGameObject.right * inputX * swimSpeed * 50 * Time.deltaTime);
-            _rb.AddForce(cameraGameObject.forward * inputY * swimSpeed * 50 * Time.deltaTime);
+            _rb.AddForce(cameraGameObject.right * inputX * _swimSpeed * 50 * Time.deltaTime);
+            _rb.AddForce(cameraGameObject.forward * inputY * _swimSpeed * 50 * Time.deltaTime);
 
             _rb.ClampRBSpeed(_maxSwimSpeed);
         }
@@ -43,16 +43,28 @@ namespace JamesNamespace
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                _rb.AddForce(Vector3.up * swimSpeed * 50 * Time.deltaTime);
+                _rb.AddForce(Vector3.up * _swimSpeed * 50 * Time.deltaTime);
 
                 _rb.ClampRBSpeed(_maxSwimSpeed);
             }
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                _rb.AddForce(Vector3.down * swimSpeed * 50 * Time.deltaTime);
+                _rb.AddForce(Vector3.down * _swimSpeed * 50 * Time.deltaTime);
 
                 _rb.ClampRBSpeed(_maxSwimSpeed);
             }
+        }
+
+        public void MultiplySpeed(int multiplier)
+        {
+            _swimSpeed *= multiplier;
+            _maxSwimSpeed *= multiplier;
+        }
+
+        public void DivideSpeed(int multiplier)
+        {
+            _swimSpeed /= multiplier;
+            _maxSwimSpeed /= multiplier;
         }
         
     }
