@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: Clown Fish
-  speedMax: 5
-  speedMin: 3
-  speed: 4
+  speedMax: 4
+  speedMin: 2
+  speed: 3
   FoundBait: {fileID: 0}
   canMove: 0
   neighbourDistance: 1

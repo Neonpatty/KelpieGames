@@ -116,6 +116,7 @@ public class FishFlock : MonoBehaviour
         {
             RaycastHit hit;
             var originDist = Vector3.Distance(transform.position, OriginRef.transform.position);
+            var origScale = OriginRef.transform.localScale;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 5, LayerMask.GetMask("Environment")))
             {
                 turning = true;
@@ -124,11 +125,13 @@ public class FishFlock : MonoBehaviour
 
                 turnDir = (newHitPos - transform.position) * -1;
             }
-            else if (originDist >= OriginRef.transform.localScale.x / 2 ||
-                     originDist >= OriginRef.transform.localScale.z / 2)
+            else if (originDist >= origScale.x||
+                     originDist >= origScale.y||
+                     originDist >= origScale.z)
             {
                 turning = true;
-                var originPos = OriginRef.transform.position;
+                //var originPos = OriginRef.transform.position;
+                var originPos = OriginRef.RandomPosInCube();
                 turnDir = originPos - transform.position;
             }
             else

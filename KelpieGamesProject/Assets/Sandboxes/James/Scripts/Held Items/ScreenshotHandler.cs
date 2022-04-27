@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace JamesNamespace
 {
@@ -9,8 +10,6 @@ namespace JamesNamespace
     {
         public int cameraRange;
         private Coroutine _oldPhotograph;
-        public LayerMask layersToTestAgainst;
-        public LayerMask YEP;
         RaycastHit m_Hit;
         public override void UseAbility(Camera cam, RawImage camImage, ItemHandler itemHandler)
         {
@@ -47,7 +46,6 @@ namespace JamesNamespace
             RaycastHit fishInLOS;
             Vector3 dir;
 
-            var fishLayer = LayerMask.GetMask("Fish");
             var environLayer = LayerMask.GetMask("Environment");
 
             collider.enabled = false;
@@ -63,7 +61,6 @@ namespace JamesNamespace
                 }
                 else
                 {
-
                     textRef.text = "You captured a: " + objectsInBox[i].GetComponent<FishFlock>().fishName;
                 }
                 print(fishInLOS.collider);
@@ -92,6 +89,10 @@ namespace JamesNamespace
     
             yield return new WaitForEndOfFrame();
             canvas.enabled = false;
+            var volume = GetComponentInChildren<PostProcessVolume>();
+            Vignette vingetteRef;
+            volume.profile.TryGetSettings(out vingetteRef);
+            vingetteRef.active = false;
 
             ScreenCapture.CaptureScreenshotIntoRenderTexture(capturedImage);
 
@@ -101,7 +102,7 @@ namespace JamesNamespace
                 Debug.LogError("_takenImage not valid");
 
             canvas.enabled = true;
-
+            //vingetteRef.active = true;
         }
 
         public IEnumerator EnableImageInUI(RawImage image)

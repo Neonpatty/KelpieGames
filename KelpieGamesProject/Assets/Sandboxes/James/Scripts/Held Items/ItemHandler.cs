@@ -30,6 +30,7 @@ namespace JamesNamespace
         PostProcessVolume volume;
         Vignette vingetteRef;
         float vingetteIntensity;
+        float vingetteRoundness;
         void Awake()
         {
             Instance = this;
@@ -72,17 +73,19 @@ namespace JamesNamespace
                 isAimingCamera = true;
                 targetCameraFov = 25;
                 vingetteIntensity = 1;
+                vingetteRoundness = 0.6f;
             }
             else
             {
                 isAimingCamera = false;
                 targetCameraFov = 60;
                 vingetteIntensity = 0.8f;
-
+                vingetteRoundness = 0.95f;
             }
             ChangeCameraState(isAimingCamera);
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetCameraFov, 10 * Time.deltaTime);
             vingetteRef.intensity.value = Mathf.Lerp(vingetteRef.intensity.value, vingetteIntensity, 10 * Time.deltaTime);
+            vingetteRef.roundness.value = Mathf.Lerp(vingetteRef.roundness.value, vingetteRoundness, 10 * Time.deltaTime);
         }
 
         void ChangeCameraState(bool isAimingCamera)

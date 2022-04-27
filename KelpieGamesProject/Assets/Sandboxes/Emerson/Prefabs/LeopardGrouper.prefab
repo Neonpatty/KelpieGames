@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: Leopard Grouper
-  speedMax: 5
-  speedMin: 3
-  speed: 4
+  speedMax: 6
+  speedMin: 4
+  speed: 5
   FoundBait: {fileID: 0}
   canMove: 0
   neighbourDistance: 1

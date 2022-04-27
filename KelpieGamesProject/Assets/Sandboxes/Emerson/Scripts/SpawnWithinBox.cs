@@ -63,5 +63,13 @@ public class SpawnWithinBox : MonoBehaviour
 
         return output;
     }
-
+    public Vector3 RandomPosInCube()
+    {
+        var tP = transform.localScale / 2;
+        var offset = transform.position;
+        return new Vector3(Random.Range(-tP.x, tP.x),
+                Random.Range(-tP.y, tP.y),
+                Random.Range(-tP.z, tP.z)) +
+                offset;
+    }
 }

@@ -357,8 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89185df2e698d95409280ab2199f8ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSwimSpeed: 4
-  _swimSpeed: 20
+  _maxSwimSpeed: 5
+  _swimSpeed: 25
   _rb: {fileID: 5996579139484237277}
   cameraGameObject: {fileID: 5996579139119026127}
 --- !u!114 &2306186110025729350
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccc71f0edcb2df40b58a5574315f3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMultiplier: 2
+  _speedMultiplier: 3
 --- !u!114 &5996579139484237267
 MonoBehaviour:
   m_ObjectHideFlags: 0
