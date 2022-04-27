@@ -37,6 +37,7 @@ public class FishFlock : MonoBehaviour
         //ManagerRef = GameObject.FindObjectOfType<GlobalFlock>();
         
         speed = Random.Range(speedMin, speedMax);
+        GetComponentInChildren<Animator>().playbackTime = Random.Range(0, 1);
         Application.targetFrameRate = 300;
     }
 
