@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 8421951860296517081}
-  _shootForce: 800
+  _shootForce: 500
   _moveSpeed: 6
   _caughtPoint: {fileID: 3836731745195282306}
   _upTime: 6
