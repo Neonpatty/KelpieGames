@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6288416371844939839}
   - component: {fileID: 2080180286227831063}
   - component: {fileID: 502745839063993179}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EmersonFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee13f6c7fadda464299fff159919e41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishName: Standard Fish
+  fishName: Cod
   speedMax: 5
   speedMin: 3
   speed: 4
   FoundBait: {fileID: 0}
   canMove: 0
-  neighbourDistance: 1
+  neighbourDistance: 5
 --- !u!65 &502745839063993179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,9 +72,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6288416371844939839}
     m_Modifications:
+    - target: {fileID: 130378, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 132556, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 143986, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 148436, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 150596, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
       propertyPath: m_Name
       value: Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 150596, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 190402, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 192228, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 419042, guid: bba9d89aeac3122429c6e4e39c1525f0, type: 3}
       propertyPath: m_RootOrder

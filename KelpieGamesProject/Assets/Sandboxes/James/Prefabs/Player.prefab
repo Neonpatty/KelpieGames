@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9144e16c622adea4e8bb37c03c035afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraRange: 50
+  cameraRange: 100
   layersToTestAgainst:
     serializedVersion: 2
     m_Bits: 0
