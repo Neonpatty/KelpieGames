@@ -12,6 +12,7 @@ public class SceneSwitch : MonoBehaviour
 
     public void Loadscene2()
     {
+        Application.Quit(); 
         Debug.Log("Quit");
     }
 }
